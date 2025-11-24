@@ -1,0 +1,356 @@
+.home {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Hero Section - COMPLETELY CENTERED */
+.hero {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
+  padding: 120px 0 80px;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+}
+
+.hero .container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-content {
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  color: var(--text-primary);
+  text-align: center;
+  width: 100%;
+}
+
+.gradient-text {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+  text-align: center;
+}
+
+.hero-description {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+  line-height: 1.6;
+  max-width: 600px;
+  text-align: center;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+/* Stats Section - COMPLETELY CENTERED */
+.stats-section {
+  padding: 80px 0;
+  background: var(--surface-color);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stats-section .container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  max-width: 1000px;
+  width: 100%;
+  justify-items: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 32px 24px;
+  background: var(--card-color);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: var(--transition);
+  width: 100%;
+  max-width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary-color);
+}
+
+.stat-icon {
+  color: var(--primary-color);
+  margin-bottom: 16px;
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  text-align: center;
+  width: 100%;
+}
+
+.stat-label {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: center;
+  width: 100%;
+}
+
+/* Sections Common - ALL CENTERED */
+.categories-section,
+.featured-section,
+.recent-section {
+  padding: 80px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.categories-section {
+  background: var(--background-color);
+}
+
+.featured-section {
+  background: var(--surface-color);
+}
+
+.recent-section {
+  background: var(--background-color);
+}
+
+.categories-section .container,
+.featured-section .container,
+.recent-section .container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 48px;
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+  text-align: center;
+  width: 100%;
+}
+
+.section-header p {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.section-icon {
+  color: var(--primary-color);
+  margin-bottom: 16px;
+}
+
+/* Grid Systems - COMPLETELY CENTERED */
+.home-grid {
+  display: grid;
+  gap: 24px;
+  width: 100%;
+  justify-items: center;
+  align-items: start;
+  margin: 0 auto;
+}
+
+.home-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 900px;
+  width: 100%;
+}
+
+.home-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 1000px;
+  width: 100%;
+}
+
+.home-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* Ensure all grid items are centered */
+.home-grid > * {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .home-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 800px;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .home-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 800px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 100px 0 60px;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-description {
+    font-size: 1.125rem;
+  }
+  
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    gap: 20px;
+  }
+  
+  .stat-value {
+    font-size: 2rem;
+  }
+  
+  .section-header h2 {
+    font-size: 2rem;
+  }
+  
+  .home-grid-2,
+  .home-grid-3,
+  .home-grid-4 {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+  
+  .stat-card {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .section-header h2 {
+    font-size: 1.75rem;
+  }
+  
+  .stat-card {
+    max-width: 100%;
+  }
+  
+  .hero-actions .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+}
