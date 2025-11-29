@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { connectDB } from './utils/database';
 import userRoutes from './routes/users';
+import puzzleRoutes from './routes/puzzles';
 
 // Load environment variables
 dotenv.config();
@@ -19,6 +20,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api/users', userRoutes);
+app.use('/api/puzzles', puzzleRoutes);
 
 // Basic health check route
 app.get('/api/health', (req: Request, res: Response) => {
@@ -29,7 +31,6 @@ app.get('/api/health', (req: Request, res: Response) => {
   });
 });
 
-// FIXED: 404 handler - use express middleware without route pattern
 app.use((req: Request, res: Response) => {
   res.status(404).json({ message: 'Route not found' });
 });
