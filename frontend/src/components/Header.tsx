@@ -1,21 +1,22 @@
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Puzzle, Trophy, User, Home } from 'lucide-react';
+import { Puzzle, Trophy, User, Home, LogOut } from 'lucide-react';
+import { useAuth } from '../hooks/useAuth';
 import './Header.css';
-
-interface NavItem {
-  path: string;
-  label: string;
-  icon: React.ComponentType<{ size?: number }>;
-}
 
 const Header: React.FC = () => {
   const location = useLocation();
+  const { user, logout, isAuthenticated } = useAuth();
 
-  const navItems: NavItem[] = [
+  const navItems = [
     { path: '/', label: 'Home', icon: Home },
     { path: '/leaderboard', label: 'Leaderboard', icon: Trophy },
-    { path: '/profile', label: 'Profile', icon: User }
+    ...(isAuthenticated ? [{ path: '/profile', label: 'Profile', icon: User }] : []),
   ];
+
+  const handleLogout = () => {
+    logout();
+  };
 
   return (
     <header className="header">
@@ -45,13 +46,26 @@ const Header: React.FC = () => {
           </nav>
 
           <div className="user-section">
-            <div className="user-points">
-              <Trophy size={16} />
-              <span>1,250</span>
-            </div>
-            <Link to="/profile" className="user-avatar">
-              <User size={20} />
-            </Link>
+            {isAuthenticated ? (
+              <>
+                <div className="user-points">
+                  <Trophy size={16} />
+                  <span>{user?.points.toLocaleString()}</span>
+                </div>
+                <div className="user-info">
+                  <span className="username">Hi, {user?.username}</span>
+                  <button onClick={handleLogout} className="logout-btn">
+                    <LogOut size={16} />
+                  </button>
+                </div>
+              </>
+            ) : (
+              <div className="auth-buttons">
+                <Link to="/profile" className="btn btn-sm btn-secondary">
+                  Sign In
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>

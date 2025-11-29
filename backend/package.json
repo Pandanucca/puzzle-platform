@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/app.ts",
+    "build": "tsc", 
+    "start": "node dist/app.js",
+    "test:db": "ts-node src/test-memory-db.ts",
+    "test:auth": "ts-node src/test-auth.ts"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +28,7 @@
     "@types/express": "^5.0.5",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^24.10.1",
+    "mongodb-memory-server": "^10.3.0",
     "nodemon": "^3.1.11",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
