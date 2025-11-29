@@ -16,6 +16,97 @@ interface AuthResponse {
   token: string;
 }
 
+// Puzzle content interfaces
+interface SudokuContent {
+  type: 'sudoku';
+  grid: number[][];
+}
+
+interface WordSearchContent {
+  type: 'wordsearch';
+  grid: string[][];
+  words: string[];
+}
+
+interface LogicGridContent {
+  type: 'logicgrid';
+  categories: Record<string, string[]>;
+  clues: string[];
+}
+
+interface MathContent {
+  type: 'math';
+  equations: string[];
+}
+
+type PuzzleContent = SudokuContent | WordSearchContent | LogicGridContent | MathContent;
+
+// Puzzle solution interfaces
+interface SudokuSolution {
+  grid: number[][];
+}
+
+interface WordSearchSolution {
+  foundWords: string[];
+  positions: Record<string, Array<{ row: number; col: number }>>;
+}
+
+interface LogicGridSolution {
+  assignments: Record<string, Record<string, string>>;
+}
+
+interface MathSolution {
+  answers: Record<string, number>;
+}
+
+type PuzzleSolution = SudokuSolution | WordSearchSolution | LogicGridSolution | MathSolution;
+
+interface Puzzle {
+  _id: string;
+  title: string;
+  description: string;
+  category: string;
+  difficulty: 'easy' | 'medium' | 'hard' | 'expert';
+  estimatedTime: number;
+  points: number;
+  content: PuzzleContent;
+  tags: string[];
+  playedCount: number;
+  successRate: number;
+  isFeatured: boolean;
+  isNew: boolean;
+  createdAt: string;
+}
+
+interface PuzzleSession {
+  _id: string;
+  puzzle: Puzzle;
+  startTime: string;
+  endTime?: string;
+  timeSpent?: number;
+  completed: boolean;
+  success: boolean;
+  userSolution?: PuzzleSolution;
+  score?: number;
+}
+
+interface PuzzlesResponse {
+  puzzles: Puzzle[];
+  totalPages: number;
+  currentPage: number;
+  total: number;
+}
+
+interface SubmitResponse {
+  success: boolean;
+  score: number;
+  timeSpent: number;
+  user: {
+    points: number;
+    puzzlesSolved: number;
+  };
+}
+
 class ApiService {
   private token: string | null = null;
 
@@ -99,6 +190,46 @@ class ApiService {
   // Health check
   async healthCheck() {
     return this.request('/health');
+  }
+
+  // Puzzle methods
+  async getPuzzles(filters?: {
+    category?: string;
+    difficulty?: string;
+    page?: number;
+    limit?: number;
+  }): Promise<PuzzlesResponse> {
+    const params = new URLSearchParams();
+    if (filters?.category) params.append('category', filters.category);
+    if (filters?.difficulty) params.append('difficulty', filters.difficulty);
+    if (filters?.page) params.append('page', filters.page.toString());
+    if (filters?.limit) params.append('limit', filters.limit.toString());
+
+    const query = params.toString();
+    const endpoint = query ? `/puzzles?${query}` : '/puzzles';
+    
+    return this.request(endpoint);
+  }
+
+  async getPuzzle(id: string): Promise<{ puzzle: Puzzle }> {
+    return this.request(`/puzzles/${id}`);
+  }
+
+  async startPuzzleSession(puzzleId: string): Promise<{ session: PuzzleSession; puzzle: Puzzle }> {
+    return this.request(`/puzzles/${puzzleId}/start`, {
+      method: 'POST',
+    });
+  }
+
+  async submitPuzzleSolution(puzzleId: string, userSolution: PuzzleSolution): Promise<SubmitResponse> {
+    return this.request(`/puzzles/${puzzleId}/submit`, {
+      method: 'POST',
+      body: JSON.stringify({ userSolution }),
+    });
+  }
+
+  async getUserSessions(): Promise<{ sessions: PuzzleSession[] }> {
+    return this.request('/puzzles/user/sessions');
   }
 }
 

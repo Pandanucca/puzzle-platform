@@ -8,7 +8,8 @@
     "build": "tsc", 
     "start": "node dist/app.js",
     "test:db": "ts-node src/test-memory-db.ts",
-    "test:auth": "ts-node src/test-auth.ts"
+    "test:auth": "ts-node src/test-auth.ts",
+    "seed:puzzles": "ts-node src/scripts/seedPuzzles.ts"
   },
   "keywords": [],
   "author": "",

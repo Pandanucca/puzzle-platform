@@ -119,7 +119,7 @@ router.post('/:id/submit', authenticate, async (req: AuthRequest, res) => {
     const endTime = new Date();
     const timeSpent = Math.floor((endTime.getTime() - session.startTime.getTime()) / 1000);
 
-    // Simple validation (you'll replace this with actual puzzle logic)
+    // Simple validation (replace this with actual puzzle logic)
     const success = JSON.stringify(userSolution) === JSON.stringify(puzzle.solution);
     
     // Calculate score based on time and difficulty

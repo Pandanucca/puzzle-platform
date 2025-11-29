@@ -24,7 +24,7 @@ async function testAuth() {
     
     console.log('\n🚀 Authentication system is ready!');
     
-    // Don't close DB - keep it running for API testing
+    // Keep DB running for API testing
     console.log('\n⏳ Database remains open for API testing...');
     console.log('Press Ctrl+C to stop when done testing.');
 

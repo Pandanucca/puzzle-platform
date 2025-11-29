@@ -6,7 +6,6 @@
   align-items: center;
 }
 
-/* Hero Section - COMPLETELY CENTERED */
 .hero {
   background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
   padding: 120px 0 80px;
@@ -93,7 +92,6 @@
   width: 100%;
 }
 
-/* Stats Section - COMPLETELY CENTERED */
 .stats-section {
   padding: 80px 0;
   background: var(--surface-color);
@@ -166,7 +164,6 @@
   width: 100%;
 }
 
-/* Sections Common - ALL CENTERED */
 .categories-section,
 .featured-section,
 .recent-section {
@@ -237,7 +234,6 @@
   margin-bottom: 16px;
 }
 
-/* Grid Systems - COMPLETELY CENTERED */
 .home-grid {
   display: grid;
   gap: 24px;
@@ -265,14 +261,12 @@
   width: 100%;
 }
 
-/* Ensure all grid items are centered */
 .home-grid > * {
   width: 100%;
   display: flex;
   flex-direction: column;
 }
 
-/* Responsive */
 @media (max-width: 1200px) {
   .home-grid-4 {
     grid-template-columns: repeat(2, 1fr);
